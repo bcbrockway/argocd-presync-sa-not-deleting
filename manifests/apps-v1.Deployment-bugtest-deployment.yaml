@@ -26,7 +26,7 @@ spec:
       - args:
         - "9999"
         command:
-        - sleep
+        - sleedasdp
         image: busybox:1.33.0
         imagePullPolicy: IfNotPresent
         name: main
