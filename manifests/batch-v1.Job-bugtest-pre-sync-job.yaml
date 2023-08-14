@@ -19,5 +19,5 @@ spec:
         imagePullPolicy: IfNotPresent
         name: main
       restartPolicy: Never
-      serviceAccountName: presync-job
+      serviceAccountName: bugtest
   ttlSecondsAfterFinished: 60

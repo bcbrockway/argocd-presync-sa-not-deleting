@@ -5,14 +5,14 @@ metadata:
     argocd.argoproj.io/hook: PreSync
     argocd.argoproj.io/sync-wave: "-1"
   labels:
-    app.kubernetes.io/name: presync-job
-  name: presync-job
+    app.kubernetes.io/name: bugtest
+  name: bugtest
   namespace: bugtest
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: presync-job
+  name: bugtest
 subjects:
 - kind: ServiceAccount
-  name: presync-job
+  name: bugtest
   namespace: bugtest
