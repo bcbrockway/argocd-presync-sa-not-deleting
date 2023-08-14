@@ -1,15 +1,18 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
+  annotations:
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "-1"
   labels:
-    app.kubernetes.io/name: shared-sa
-  name: shared-sa
+    app.kubernetes.io/name: presync-job
+  name: presync-job
   namespace: bugtest
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: shared-sa
+  name: presync-job
 subjects:
 - kind: ServiceAccount
-  name: shared-sa
+  name: presync-job
   namespace: bugtest

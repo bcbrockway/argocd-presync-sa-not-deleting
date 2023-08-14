@@ -4,8 +4,8 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: PreSync
   labels:
-    app.kubernetes.io/name: pre-sync-job
-  name: pre-sync-job
+    app.kubernetes.io/name: presync-job
+  name: presync-job
   namespace: bugtest
 spec:
   template:
@@ -15,12 +15,9 @@ spec:
         - "10"
         command:
         - sleep
-        envFrom:
-        - secretRef:
-            name: shared-secret
         image: busybox:1.30.0
         imagePullPolicy: IfNotPresent
         name: main
       restartPolicy: Never
-      serviceAccountName: shared-sa
+      serviceAccountName: presync-job
   ttlSecondsAfterFinished: 60
