@@ -24,10 +24,13 @@ spec:
     spec:
       containers:
       - command:
-        - sh
-        - -c
+        - sleep
         args:
-        - "sleep 30; exit 1"
+        - "9999"
+        readinessProbe:
+          httpGet:
+            path: /fake-path
+            port: 8080
         resources:
           requests:
             cpu: 100m
