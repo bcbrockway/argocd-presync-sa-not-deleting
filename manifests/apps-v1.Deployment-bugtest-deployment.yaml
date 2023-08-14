@@ -23,7 +23,9 @@ spec:
         app.kubernetes.io/name: bugtest
     spec:
       containers:
-      - command:
+      - name: main
+        image: busybox:1.33.1
+        command:
         - sleep
         args:
         - "9999"
@@ -38,7 +40,5 @@ spec:
           limits:
             cpu: 200m
             memory: 256Mi
-        image: busybox:1.33.0
         imagePullPolicy: IfNotPresent
-        name: main
       serviceAccountName: bugtest

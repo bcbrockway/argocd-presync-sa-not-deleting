@@ -11,13 +11,13 @@ spec:
   template:
     spec:
       containers:
-      - args:
-        - "10"
+      - name: main
+        image: busybox:1.33.1
         command:
         - sleep
-        image: busybox:1.30.0
+        args:
+        - "5"
         imagePullPolicy: IfNotPresent
-        name: main
       restartPolicy: Never
       serviceAccountName: bugtest
   ttlSecondsAfterFinished: 60
