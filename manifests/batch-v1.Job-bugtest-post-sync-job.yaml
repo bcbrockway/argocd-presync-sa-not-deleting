@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+  labels:
+    app.kubernetes.io/name: post-sync-job
+  name: post-sync-job
+  namespace: bugtest
+spec:
+  template:
+    spec:
+      containers:
+      - args:
+        - "10"
+        command:
+        - sleep
+        envFrom:
+        - secretRef:
+            name: shared-secret
+        image: busybox:1.30.0
+        imagePullPolicy: IfNotPresent
+        name: main
+      restartPolicy: Never
+      serviceAccountName: shared-sa
+  ttlSecondsAfterFinished: 60

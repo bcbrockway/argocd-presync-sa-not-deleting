@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: deployment
+  name: deployment
+  namespace: bugtest
+spec:
+  progressDeadlineSeconds: 20
+  minReadySeconds: 10
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: deployment
+  strategy:
+    rollingUpdate:
+      maxSurge: 15%
+      maxUnavailable: 10%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: deployment
+    spec:
+      containers:
+      - args:
+        - "9999"
+        command:
+        - sleep
+        envFrom:
+        - secretRef:
+            name: shared-secret
+        image: busybox:1.30.0
+        imagePullPolicy: IfNotPresent
+        readinessProbe:
+          httpGet:
+            path: /fake-path
+            port: 8080
+        name: main
+      serviceAccountName: shared-sa

@@ -1,0 +1,15 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  labels:
+    app.kubernetes.io/name: shared-sa
+  name: shared-sa
+  namespace: bugtest
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: shared-sa
+subjects:
+- kind: ServiceAccount
+  name: shared-sa
+  namespace: bugtest
