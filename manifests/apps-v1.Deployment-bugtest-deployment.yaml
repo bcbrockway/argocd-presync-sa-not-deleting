@@ -27,6 +27,6 @@ spec:
         - "9999"
         command:
         - sleep
-        image: busybox:1.30.0
+        image: busybox:1.32.0
         imagePullPolicy: IfNotPresent
         name: main
